@@ -1,0 +1,72 @@
+.base {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 50px;
+  max-width: 1500px;
+  margin: auto;
+  align-items: center;
+}
+
+.title {
+  h1 {
+    font-weight: 500;
+    line-height: 28px;
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  img {
+    width: 250px;
+    height: auto;
+  }
+}
+
+.batched {
+  h3 {
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 18px;
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
+
+.barcode_edit {
+  display: ruby;
+}
+
+.edit {
+  margin-left: 30px;
+
+  button {
+    background: none;
+    border: none;
+    width: 30px;
+    cursor: pointer;
+    color: inherit;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .base {
+    padding: 50px 40px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .base {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px 20px;
+  }
+
+  .title img {
+    width: 200px;
+  }
+}

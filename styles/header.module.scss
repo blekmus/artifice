@@ -1,0 +1,56 @@
+.base {
+  min-height: 100vh;
+  display: flex;
+  max-width: 900px;
+  margin: auto;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+.background img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.title {
+  margin-bottom: 60px;
+
+  h1 {
+    font-weight: 500;
+    line-height: 29px;
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  img {
+    width: 250px;
+    height: auto;
+  }
+}
+
+.content {
+  p {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .base {
+    display: block;
+    margin-top: 70px;
+  }
+
+  .title img {
+    width: 200px;
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+}

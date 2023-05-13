@@ -1,0 +1,35 @@
+:root {
+  font-weight: 400;
+
+  --text-color: #A6A6A6;
+
+  color: #A6A6A6;
+  background-color: #0E1011;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* get rid of the miserable chrome blue border highlight */
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}

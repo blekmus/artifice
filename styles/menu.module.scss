@@ -1,0 +1,53 @@
+.base {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 20px;
+  max-width: 1500px;
+  margin: auto;
+  align-items: center;
+}
+
+.showcase {
+  h3 {
+    font-weight: 400;
+    font-style: italic;
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
+
+.botched {
+  h3 a {
+    font-weight: 400;
+    font-style: italic;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 18px;
+
+    svg {
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  h3 a:hover svg {
+    transform: translateX(2px);
+  }
+}
+
+.edit {
+  margin-right: -6%;
+
+  button {
+    background: none;
+    border: none;
+    width: 30px;
+    cursor: pointer;
+    color: inherit;
+  }
+}
