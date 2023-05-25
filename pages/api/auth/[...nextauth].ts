@@ -18,6 +18,15 @@ export const authOptions: NextAuthOptions = {
         maxAge: 30 * 24 * 60 * 60, // 30 days
         updateAge: 2 * 60, // 2 hours,
     },
+    callbacks: {
+        async signIn({ account, profile }) {
+            if (account?.provider === 'github' && profile?.email === process.env.ADMIN_EMAIL) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
 }
 
 export default NextAuth(authOptions);
