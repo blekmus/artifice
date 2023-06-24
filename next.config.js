@@ -5,13 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'f003.backblazeb2.com',
+        hostname: 'artifice.b-cdn.net',
         port: '',
         pathname: '/**'
       }

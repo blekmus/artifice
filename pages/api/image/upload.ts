@@ -42,7 +42,7 @@ export default async function handler(
 
     // generate random string for filename
     const randomString = Math.random().toString(36).substring(2, 15)
-    const filename = 'testing/' + randomString + '_' + imageInfo.originalFilename
+    const filename = randomString + '_' + imageInfo.originalFilename
 
     // connnect to B2
     const client = new S3Client({
@@ -60,14 +60,15 @@ export default async function handler(
       Body: imageBlob,
     })
 
-    res.status(200).json({ url: filename })
-
     // upload file to bucket
     try {
       await client.send(command)
+      res.status(200).json({ url: filename })
     } catch (err) {
       console.log('Failed uploading image to b2' + files.file.originalFilename)
       console.error(err)
     }
+
+    return
   })
 }

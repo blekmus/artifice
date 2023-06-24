@@ -30,6 +30,13 @@ function createGrid(jsonData: DisplayLayout[]) {
   return grid
 }
 
+function encodeURIAll(value: string) {
+  return value.replace(
+    /[^A-Za-z0-9]/g,
+    (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`
+  )
+}
+
 function GridComponent({ layouts }: Props) {
   const grid = createGrid(layouts)
 
@@ -52,8 +59,11 @@ function GridComponent({ layouts }: Props) {
             <div key={item.id} className={styles.item}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`https://f003.backblazeb2.com/file/caiden-thelonelylands/${item.image}`}
+                src={`https://artifice.b-cdn.net/${encodeURIAll(item.image)}`}
                 alt="grid-item"
+                loading="lazy"
+                decoding="async"
+                data-nimg="fill"
               />
             </div>
           ))}

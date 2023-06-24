@@ -14,6 +14,7 @@ import useBotchedLayouts from "@/hooks/useBotchedLayouts"
 
 import { botchedContent } from "@/store"
 import { useMemo } from "react"
+import Link from "next/link"
 
 function BotchedHeaderComponent() {
   const queryClient = useQueryClient()
@@ -120,7 +121,9 @@ function BotchedHeaderComponent() {
     <div className={styles.base}>
       <div className={styles.title}>
         <h1>
-          <i>ARTIFICE</i>
+          <Link href="/">
+            <i>ARTIFICE</i>
+          </Link>
         </h1>
         <div className={styles.barcode_edit}>
           <Image src={Barcode} alt="barcode" priority />

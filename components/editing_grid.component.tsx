@@ -2,7 +2,7 @@ import { Responsive, WidthProvider } from "react-grid-layout"
 import { v4 as uuid } from "uuid"
 import { useCallback, useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
-import Image from "next/image"
+import Image, { ImageLoader } from "next/image"
 
 import { BsImageFill } from "react-icons/bs"
 import { CgCloseR } from "react-icons/cg"
@@ -14,6 +14,13 @@ import "react-resizable/css/styles.css"
 import { Layout } from "@/types/content"
 
 const ResponsiveGrid = WidthProvider(Responsive)
+
+function encodeURIAll(value: string) {
+  return value.replace(
+    /[^A-Za-z0-9]/g,
+    (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`
+  )
+}
 
 function EditingGridComponent({
   layouts,
@@ -128,6 +135,14 @@ function EditingGridComponent({
     }
   }, [currentLayout, deleteHistory, layouts, setLayouts])
 
+  const imageLoader: ImageLoader = ({ src, width, quality }) => {
+    if (src.startsWith("blob")) return src
+
+    return `https://artifice.b-cdn.net/${encodeURIAll(src)}?w=${width}&q=${
+      quality || 75
+    }`
+  }
+
   return (
     <div className={styles.base}>
       <ResponsiveGrid
@@ -199,23 +214,27 @@ function EditingGridComponent({
           setCurrentLayout(e)
         }}
       >
-        {layouts.map((layout) => (
-          <div key={layout.id} className={styles.grid_item}>
-            <div className={styles.grid_item_content}>
-              <CgCloseR
-                className={styles.grid_item_close}
-                size="1.2em"
-                color="rgb(255, 0, 0)"
-                onClick={() => handleDelete(layout.id)}
-              />
-              <Image
-                src={`https://f003.backblazeb2.com/file/caiden-thelonelylands/${layout.image}`}
-                alt="grid-item"
-                fill
-              />
+        {layouts.map((layout) => {
+          console.log(layout.image)
+          return (
+            <div key={layout.id} className={styles.grid_item}>
+              <div className={styles.grid_item_content}>
+                <CgCloseR
+                  className={styles.grid_item_close}
+                  size="1.2em"
+                  color="rgb(255, 0, 0)"
+                  onClick={() => handleDelete(layout.id)}
+                />
+                <Image
+                  src={layout.image}
+                  alt="grid-item"
+                  fill
+                  loader={imageLoader}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </ResponsiveGrid>
 
       <div className={styles.dropzone_cont}>

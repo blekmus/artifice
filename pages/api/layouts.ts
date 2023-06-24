@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   const layouts = await prisma.layout.findMany({
     where: {
-      botched: false || null,
+      botched: false,
     },
     include: {
       mainLayout: true,
